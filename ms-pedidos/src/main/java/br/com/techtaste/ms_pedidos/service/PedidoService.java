@@ -24,7 +24,7 @@ public class PedidoService {
         this.client = client;
     }
 
-    public PedidoResponseDto cadastrarPedido(PedidoRequestDto pedidoDto) {
+    public PedidoResponseDto cadastrarPedido(PedidoRequestDto pedidoDto, Boolean comErro) {
         Pedido pedido = new Pedido();
         BeanUtils.copyProperties(pedidoDto, pedido);
         Status status = Status.AGUARDANDO_PAGAMENTO;
@@ -32,7 +32,11 @@ public class PedidoService {
         pedido.setData(LocalDate.now());
         pedido.calcularTotal();
         repository.save(pedido);
-        status = obterStatusPagamento(pedido.getId().toString());
+        if (comErro) { 
+            status = Status.ERRO_CONSULTA_PGTO; 
+        } else { 
+            status = obterStatusPagamento(pedido.getId().toString());  
+        } 
         pedido.setStatus(status);
         repository.save(pedido);
         return new PedidoResponseDto(pedido.getId(), pedido.getStatus(),
