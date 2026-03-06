@@ -41,13 +41,16 @@ CREATE database "ms-pagamentos-db";
 Execute os serviços na seguinte ordem:
 
 ```bash
-# 1º Sempre o Eureka Server
+# 1º Serviço de configuração
+config-server
+
+# 2º Eureka Server
 service-registry
 
-# 2º Gateway
+# 3º Gateway
 api-gateway;
 
-# 3º Os microsserviços, independente da ordem
+# 4º Os microsserviços, independente da ordem
 ms-pedidos
 ms-pagamentos
 ms-usuarios
