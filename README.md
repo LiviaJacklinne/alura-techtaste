@@ -66,6 +66,19 @@ O `service-registry (Eureka)` atua como serviço de descoberta — cada microsse
 
 Além disso, exploramos mecanismos de resiliência, como circuit breaker e fallback, essenciais para manter a estabilidade dos serviços diante de falhas.
 
+### URLs úteis
+```bash
+# Consultar arquivos properties (o mesmo para os demais, só mudar o nome do serviço)
+http://localhost:8888/ms-pedidos/default
+http://localhost:8888/ms-pedidos.properties
+
+# EUREKA
+http://localhost:8081/
+
+# H2 (porta informada na inicialização do tomcat)
+http://localhost:PORTA/h2-console
+
+```
 
 ## Execução via terminal 
 ```
