@@ -6,37 +6,25 @@ Projeto desenvolvido para o estudo de Microsserviços.
 Essa aplicação é capaz de efetuar o CRUD de um pedido, acompanhar o pagamento e notificar o usuário via e-mail, sobre andamento do pedido.
 
 ## Tecnologias e boas práticas
-- Java 21 e Spring Boot
-- Eureka Server (Serviço de descoberta)
-- Open Feign
-- API Gateway
-- Microsserviços de pedidos, pagamentos e usuários
-- Circuit Breaker e Fallback
-- Postgre e H2
-- RabbitMQ
 
-### Arquitetura
-<!-- 
+```bash
+# Backend
+Java 21
+Spring Boot 3
+
+# Banco
+PostgreSQL
+H2
+
+# Boas práticas
+Microsserviços de pedidos, pagamentos e usuários
+Eureka Server (Serviço de descoberta)
+API Gateway
+Circuit Breaker e Fallback
+Message Broker (RabbitMQ e Open Feign)
 ```
 
-           Cliente (Postman / Frontend)
-                     │
-                     ▼
-            API Gateway (:8082)
-            /          \
-     consulta            roteia requisição
-          │                      │
-          ▼                      ▼
- Service Registry (:8081)   ms-pedidos (:8080)
-  "ms-pedidos → :8080"      ms-pagamentos (:8083)
-  "ms-pagamentos → :8083"   ms-usuarios (:8084)
-  "ms-usuarios → :8084"
-  
-  
-  ms-pedidos ──── OpenFeign (síncrono) ────► ms-pagamentos
-  ms-pedidos ──── RabbitMQ (assíncrono) ───► ms-usuarios
-
-``` -->
+### Arquitetura
 
 ![image](https://github.com/user-attachments/assets/c292341a-4a9e-4568-8507-40ccb7cd226a)
 
